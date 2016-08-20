@@ -13,11 +13,17 @@ static bool spConfigCreateTest() {
     // creating the config file according to the example config file
     conf_a = spConfigCreate(path, msg);
 
+//    printf("%s%s%s%s%s%d", "should be: ", "./images/", " in struct: ", conf_a->spImagesDirectory,
+//	  " diff: ", strcmp(conf_a->spImagesDirectory, "./images/"));
+//    printf("%s%s%s", "./images/", "\n and this is:", conf_a->spImagesDirectory);
+
+
     // testing its elements:
-    if (conf_a) {
-    	printf("ok\n");
-    }
-    ASSERT_TRUE(conf_a->spImagesDirectory == "./images/");
+    ASSERT_TRUE(strcmp(conf_a->spImagesDirectory, "./images/") == 0);
+    ASSERT_TRUE(strcmp(conf_a->spImagesPrefix, "img") == 0);
+    ASSERT_TRUE(strcmp(conf_a->spImagesSuffix, ".png") == 0);
+    ASSERT_TRUE(conf_a->spNumOfImages == 17);
+
     // todo paz: continue checks
     return true;
 }
