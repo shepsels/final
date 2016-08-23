@@ -14,7 +14,7 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
     FILE* file;
     SPConfig config;
     char line[MAX_LEN], var[MAX_LEN];
-    int tempNum;
+    int tempNum, lineNumber=0;
 
     if (msg == NULL)
     {
@@ -48,11 +48,21 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
     // running over each line and setting its value to the correct struct element
     while (fgets(line, MAX_LEN, file) != NULL)
     {
+    	lineNumber++;
         // this is a comment line and shouldn't be parsed
         if (line[0] == '#')
             // todo paz: maybe I should add here cond that validates there are no spaces before '#'
         {
             continue;
+        }
+
+        // removes spaces before and after all other characters
+        removeSpaces(line);
+
+        // the line is not a valid line
+        if(hasSpacesInVar(line))
+        {
+        	printInvalidMessage(filename, lineNumber);
         }
 
         char *cfLine;
@@ -323,26 +333,38 @@ bool hasSpaces(const char *s) {
 bool hasSpacesInVar(const char *s) {
 	bool foundEqualSign = false;
 	while (*s != '\0') {
-    if (isspace(*s)){
-    	//check if in format of "<a> = <b>"
-    	if((*(s+1) == '=') && (isspace(*(s+2))) && !foundEqualSign) {
-    		s+=2;
-    		foundEqualSign = true;
-    	}
-    	//check if in format of "<a> =<b>"
-    	else if((*(s+1) == '=') && !foundEqualSign) {
-    		s++;
-    		foundEqualSign = true;
-    	}
-    	else if((*(s-1) == '=') && !foundEqualSign) {
-    		foundEqualSign = true;
-    	}
-    	else {
-    		return true;
-    	}
-    }
-    s++;
-  }
+
+		// check if there's a comment
+		if(*s == '#')
+		{
+			return false;
+		}
+		if (isspace(*s)){
+			//check if in format of "<a> = <b>"
+			if((*(s+1) == '=') && (isspace(*(s+2))) && !foundEqualSign) {
+				s+=2;
+				foundEqualSign = true;
+			}
+			//check if in format of "<a> =<b>"
+			else if((*(s+1) == '=') && !foundEqualSign) {
+				s++;
+				foundEqualSign = true;
+			}
+			else if((*(s-1) == '=') && !foundEqualSign) {
+				foundEqualSign = true;
+			}
+			else {
+				return true;
+			}
+		}
+		s++;
+	}
   return false;
 }
 
+void printInvalidMessage(char* filename, int lineNum)
+{
+	printf("File: %s\n", filename);
+	printf("Line: %s\n", lineNum);
+	printf("Message: Invalid configuration line");
+}
