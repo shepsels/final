@@ -9,19 +9,6 @@
 # define MAX_LEN 1024
 
 
-//helper function to remove spaces
-void removeSpaces(char* source)
-{
-  char* i = source;
-  char* j = source;
-  while(*j != 0)
-  {
-    *i = *j++;
-    if(*i != ' ')
-      i++;
-  }
-  *i = 0;
-}
 
 SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
     FILE* file;
@@ -54,6 +41,8 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 	config->spKDTreeSplitMethod = MAX_SPREAD;
 	config->spKNN = 1;
 	config->spMinimalGUI = false;
+	config->spLoggerLevel = 3;
+	strcpy(config->spLoggerFilename, "stdout");
 
 
     // running over each line and setting its value to the correct struct element
@@ -70,25 +59,28 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
         cfLine = strstr((char*)line, DELIMITER);
         cfLine = cfLine + strlen(DELIMITER);
 
-        // reads first word in line
-        sscanf(line, "%[^=]", var);
-        printf("%s%s%s%s%s", "var is: ", var, "-- and cfLine is: ", cfLine, "\n");
+        // reads until delimiter =
+        sscanf(line, "%[^=]", var); //todo paz: change = to DELIMITER
+
+        printf("var is --%s-- and cfLine is --%s--\n", var, cfLine);
+
+        // checking there are no constrains violations
+
+
 
         // ---1--- var is spImagesDirectory
-        printf("-----------%s--------\n", var);
         if (strcmp(var,"spImagesDirectory ") == 0 || strcmp(var,"spImagesDirectory") == 0)
         {
-        	// remove spaces and last line from cfLine
+        	// remove spaces and new line char from cfLine
         	removeSpaces(cfLine);
         	strtok(cfLine, "\n");
-
 
         	// copy cfLine to the correct attribute of config
             memcpy(config->spImagesDirectory, cfLine, strlen(cfLine));
         }
 
         // ---2--- var is spImagesPrefix
-		if (strcmp(var,"spImagesPrefix ") == 0 || strcmp(var,"spImagesPrefix") == 0)
+        else if (strcmp(var,"spImagesPrefix ") == 0 || strcmp(var,"spImagesPrefix") == 0)
 		{
 			// remove spaces and last line from cfLine
 			removeSpaces(cfLine);
@@ -99,7 +91,7 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 		}
 
         // ---3--- var is spImagesSuffix
-		if (strcmp(var,"spImagesSuffix ") == 0 || strcmp(var,"spImagesSuffix") == 0)
+        else if (strcmp(var,"spImagesSuffix ") == 0 || strcmp(var,"spImagesSuffix") == 0)
 		{
 			// remove spaces and last line from cfLine
 			removeSpaces(cfLine);
@@ -110,7 +102,7 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 		}
 
         // ---4--- var is spNumOfImages
-		if (strcmp(var,"spNumOfImages ") == 0 || strcmp(var,"spNumOfImages") == 0)
+        else if (strcmp(var,"spNumOfImages ") == 0 || strcmp(var,"spNumOfImages") == 0)
 		{
 			// remove spaces and last line from cfLine
 			removeSpaces(cfLine);
@@ -122,7 +114,7 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 		}
 
         // ---5--- var is spPCADimension
-		if (strcmp(var,"spPCADimension ") == 0 || strcmp(var,"spPCADimension") == 0)
+        else if (strcmp(var,"spPCADimension ") == 0 || strcmp(var,"spPCADimension") == 0)
 		{
 			// remove spaces and last line from cfLine
 			removeSpaces(cfLine);
@@ -134,7 +126,7 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 		}
 
         // ---6--- var is spPCAFilename
-		if (strcmp(var,"spPCAFilename ") == 0 || strcmp(var,"spPCAFilename") == 0)
+        else if (strcmp(var,"spPCAFilename ") == 0 || strcmp(var,"spPCAFilename") == 0)
 		{
 			// remove spaces and last line from cfLine
 			removeSpaces(cfLine);
@@ -145,7 +137,7 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 		}
 
         // ---7--- var is spNumOfFeatures
-		if (strcmp(var,"spNumOfFeatures ") == 0 || strcmp(var,"spNumOfFeatures") == 0)
+        else if (strcmp(var,"spNumOfFeatures ") == 0 || strcmp(var,"spNumOfFeatures") == 0)
 		{
 			// remove spaces and last line from cfLine
 			removeSpaces(cfLine);
@@ -157,7 +149,7 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 		}
 
         // ---8--- var is spExtractionMode
-		if (strcmp(var,"spExtractionMode ") == 0 || strcmp(var,"spExtractionMode") == 0)
+        else if (strcmp(var,"spExtractionMode ") == 0 || strcmp(var,"spExtractionMode") == 0)
 		{
 			// remove spaces and last line from cfLine
 			removeSpaces(cfLine);
@@ -171,7 +163,7 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 		}
 
         // ---9--- var is spNumOfSimilarImages
-		if (strcmp(var,"spNumOfSimilarImages ") == 0 || strcmp(var,"spNumOfSimilarImages") == 0)
+        else if (strcmp(var,"spNumOfSimilarImages ") == 0 || strcmp(var,"spNumOfSimilarImages") == 0)
 		{
 			// remove spaces and last line from cfLine
 			removeSpaces(cfLine);
@@ -183,7 +175,7 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 		}
 
         // ---10--- var is spKDTreeSplitMethod
-		if (strcmp(var,"spKDTreeSplitMethod ") == 0 || strcmp(var,"spKDTreeSplitMethod") == 0)
+        else if (strcmp(var,"spKDTreeSplitMethod ") == 0 || strcmp(var,"spKDTreeSplitMethod") == 0)
 		{
 			// remove spaces and last line from cfLine
 			removeSpaces(cfLine);
@@ -204,9 +196,153 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 		    }
 		}
 
+        // ---11--- var is spKNN
+        else if (strcmp(var,"spKNN ") == 0 || strcmp(var,"spKNN") == 0)
+		{
+			// remove spaces and last line from cfLine
+			removeSpaces(cfLine);
+			strtok(cfLine, "\n");
+			tempNum = atoi(cfLine);
+
+			// copy cfLine to the correct attribute of config
+			config->spKNN = tempNum;
+		}
+
+        // ---12--- var is spMinimalGUI
+        else if (strcmp(var,"spMinimalGUI ") == 0 || strcmp(var,"spMinimalGUI") == 0)
+		{
+			// remove spaces and last line from cfLine
+			removeSpaces(cfLine);
+			strtok(cfLine, "\n");
+
+			// false is the default. if its false it should be changed
+			if(strcmp("true", cfLine) == 0)
+			{
+				config->spMinimalGUI = false;
+			}
+		}
+
+        // ---13--- var is spLoggerLevel
+        else if (strcmp(var,"spLoggerLevel ") == 0 || strcmp(var,"spLoggerLevel") == 0)
+		{
+			// remove spaces and last line from cfLine
+			removeSpaces(cfLine);
+			strtok(cfLine, "\n");
+			tempNum = atoi(cfLine);
+
+			// copy cfLine to the correct attribute of config
+			config->spLoggerLevel = tempNum;
+		}
+
+        // ---14--- var is spLoggerFilename
+        else if (strcmp(var,"spLoggerFilename ") == 0 || strcmp(var,"spLoggerFilename") == 0)
+		{
+			// remove spaces and last line from cfLine
+			removeSpaces(cfLine);
+			strtok(cfLine, "\n");
+
+			// copy cfLine to the correct attribute of config
+			memcpy(config->spLoggerFilename, cfLine, strlen(cfLine));
+		}
+
 
     }
 
 
     return config;
 }
+
+
+
+///////////////////////////////// Help Functions \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+// todo paz: add functions to header file or to another file
+size_t trimwhitespace(char *out, const char *str)
+{
+	int len = 0;
+
+	// count
+	while (str[len] != '\0')
+	{
+		len++;
+
+	}
+	if(len == 0)
+	return 0;
+
+	const char *end;
+	size_t out_size;
+
+	// Trim leading space
+	while(isspace(*str)) str++;
+
+	// All spaces?
+	if(*str == 0)
+	{
+	*out = 0;
+	return 1;
+	}
+
+	// Trim trailing space
+	end = str + strlen(str) - 1;
+	while(end > str && isspace(*end)) end--;
+	end++;
+
+	// Set output size
+	out_size = (end - str) < len-1 ? (end - str) : len-1;
+
+	// Copy trimmed string
+	memcpy(out, str, out_size);
+	out[out_size] = 0;
+
+	return out_size;
+}
+
+//helper function to remove spaces
+void removeSpaces(char* source)
+{
+  char* i = source;
+  char* j = source;
+  while(*j != 0)
+  {
+    *i = *j++;
+    if(*i != ' ')
+      i++;
+  }
+  *i = 0;
+}
+
+bool hasSpaces(const char *s) {
+  while (*s != '\0') {
+    if (isspace(*s))
+      return true;
+    s++;
+  }
+  return false;
+}
+
+bool hasSpacesInVar(const char *s) {
+	bool foundEqualSign = false;
+	while (*s != '\0') {
+    if (isspace(*s)){
+    	//check if in format of "<a> = <b>"
+    	if((*(s+1) == '=') && (isspace(*(s+2))) && !foundEqualSign) {
+    		s+=2;
+    		foundEqualSign = true;
+    	}
+    	//check if in format of "<a> =<b>"
+    	else if((*(s+1) == '=') && !foundEqualSign) {
+    		s++;
+    		foundEqualSign = true;
+    	}
+    	else if((*(s-1) == '=') && !foundEqualSign) {
+    		foundEqualSign = true;
+    	}
+    	else {
+    		return true;
+    	}
+    }
+    s++;
+  }
+  return false;
+}
+
