@@ -5,26 +5,32 @@
 # include <string.h>
 # include "../SPConfig.h"
 
-static bool spConfigCreateTest() {
-	printf("started");
-    char* path = "configFile1.txt"; //todo change back
+static bool spConfigCreateTest_1() {
+	printf("started test 1\n\n");
+    char* path = "configFile3_valid.txt"; //todo change back
     SP_CONFIG_MSG * msg;
     SPConfig conf_a;
 
-    // creating the config file according to the example config file
+
     conf_a = spConfigCreate(path, msg);
+    printf("%d\n", 23847290384710239487192038471);
 
-//    printf("%s%s%s%s%s%d", "should be: ", "./images/", " in struct: ", conf_a->spImagesDirectory,
-//	  " diff: ", strcmp(conf_a->spImagesDirectory, "./images/"));
-//    printf("%s%s%s", "./images/", "\n and this is:", conf_a->spImagesDirectory);
+//    printf("sdkjlsdkf %s\n", conf_a->spImagesDirectory);
 
+    // validating
 
-    // testing its elements:
 //    ASSERT_TRUE(strcmp(conf_a->spImagesDirectory, "./images/") == 0);
 //    ASSERT_TRUE(strcmp(conf_a->spImagesPrefix, "img") == 0);
 //    ASSERT_TRUE(strcmp(conf_a->spImagesSuffix, ".png") == 0);
 //    ASSERT_TRUE(conf_a->spNumOfImages == 17);
-//
+//    ASSERT_TRUE(conf_a->spPCADimension == 20);	//default
+//    ASSERT_TRUE(strcmp(conf_a->spPCAFilename, "pca.yml") == 0);
+//    ASSERT_TRUE(conf_a->spNumOfFeatures == 100);
+//    ASSERT_TRUE(conf_a->spExtractionMode == true);
+//    ASSERT_TRUE(conf_a->spMinimalGUI == false);	//default
+//    ASSERT_TRUE(conf_a->spNumOfSimilarImages == 5);
+//    ASSERT_TRUE(strcmp(conf_a->spLoggerFilename, "stdout") == 0);
+
 //    // todo paz: continue checks
     return true;
 }
@@ -41,6 +47,7 @@ static bool hasSpacesInVarTest() {
 	char* j = "foo =ba r";
 	char* k = "foo= ba r";
 	char* l = "foo = ba r";
+	char* m = "spImagesDirectory=./images/\n";
 	int z = 'a';
 
 	ASSERT_FALSE(hasSpacesInVar(a));
@@ -55,6 +62,7 @@ static bool hasSpacesInVarTest() {
 	ASSERT_TRUE(hasSpacesInVar(j));
 	ASSERT_TRUE(hasSpacesInVar(k));
 	ASSERT_TRUE(hasSpacesInVar(l));
+	ASSERT_FALSE(hasSpacesInVar(m));
 
 	return true;
 }
@@ -62,9 +70,14 @@ static bool hasSpacesInVarTest() {
 
 
 int main() {
-    printf("sdfsd");
-	RUN_TEST(spConfigCreateTest);
-    printf("sdfsd");
+    SPConfig conf_a;
+    SP_CONFIG_MSG * msg;
+
+    conf_a = spConfigCreate("configFile3_valid.txt", msg);
+    printf("%d\n", conf_a->spKNN);
+
+
+	RUN_TEST(spConfigCreateTest_1);
 
 
     RUN_TEST(hasSpacesInVarTest);
