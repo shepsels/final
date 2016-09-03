@@ -13,23 +13,20 @@ static bool spConfigCreateTest_1() {
 
 
     conf_a = spConfigCreate(path, msg);
-    printf("%d\n", 23847290384710239487192038471);
-
-//    printf("sdkjlsdkf %s\n", conf_a->spImagesDirectory);
 
     // validating
 
-//    ASSERT_TRUE(strcmp(conf_a->spImagesDirectory, "./images/") == 0);
-//    ASSERT_TRUE(strcmp(conf_a->spImagesPrefix, "img") == 0);
-//    ASSERT_TRUE(strcmp(conf_a->spImagesSuffix, ".png") == 0);
-//    ASSERT_TRUE(conf_a->spNumOfImages == 17);
-//    ASSERT_TRUE(conf_a->spPCADimension == 20);	//default
-//    ASSERT_TRUE(strcmp(conf_a->spPCAFilename, "pca.yml") == 0);
-//    ASSERT_TRUE(conf_a->spNumOfFeatures == 100);
-//    ASSERT_TRUE(conf_a->spExtractionMode == true);
-//    ASSERT_TRUE(conf_a->spMinimalGUI == false);	//default
-//    ASSERT_TRUE(conf_a->spNumOfSimilarImages == 5);
-//    ASSERT_TRUE(strcmp(conf_a->spLoggerFilename, "stdout") == 0);
+    ASSERT_TRUE(strcmp(conf_a->spImagesDirectory, "./images/") == 0);
+    ASSERT_TRUE(strcmp(conf_a->spImagesPrefix, "img") == 0);
+    ASSERT_TRUE(strcmp(conf_a->spImagesSuffix, ".png") == 0);
+    ASSERT_TRUE(conf_a->spNumOfImages == 17);
+    ASSERT_TRUE(conf_a->spPCADimension == 20);	//default
+    ASSERT_TRUE(strcmp(conf_a->spPCAFilename, "pca.yml") == 0);
+    ASSERT_TRUE(conf_a->spNumOfFeatures == 100);
+    ASSERT_TRUE(conf_a->spExtractionMode == true);
+    ASSERT_TRUE(conf_a->spMinimalGUI == false);	//default
+    ASSERT_TRUE(conf_a->spNumOfSimilarImages == 5);
+    ASSERT_TRUE(strcmp(conf_a->spLoggerFilename, "stdout") == 0);
 
 //    // todo paz: continue checks
     return true;
@@ -74,7 +71,7 @@ int main() {
     SP_CONFIG_MSG * msg;
 
     conf_a = spConfigCreate("configFile3_valid.txt", msg);
-    printf("%d\n", conf_a->spKNN);
+//    printf("%d\n", conf_a->spKNN);
 
 
 	RUN_TEST(spConfigCreateTest_1);

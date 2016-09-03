@@ -9,12 +9,16 @@
 # define MAX_LEN 1024
 
 
+/////////////////////////////////////////////todo/////////////////////////////////////////////
+// add messages to create
+// check what if:      #zdfdfs
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////// Help Functions \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 // todo paz: add functions to header file or to another file
-size_t trimwhitespace(char *out, const char *str)
+int trimWhiteSpace(char *out, const char *str)
 {
 	int len = 0;
 
@@ -24,11 +28,12 @@ size_t trimwhitespace(char *out, const char *str)
 		len++;
 
 	}
-	if(len == 0)
+	len++;
+	if(len == 1)
 	return 0;
 
 	const char *end;
-	size_t out_size;
+	int out_size;
 
 	// Trim leading space
 	while(isspace(*str)) str++;
@@ -63,7 +68,7 @@ void removeSpaces(char* source)
   while(*j != 0)
   {
     *i = *j++;
-    if(*i != ' ')
+    if(!isspace(*i))
       i++;
   }
   *i = 0;
@@ -149,15 +154,15 @@ void freeStructMemory(SPConfig spcnfg)
 SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
     FILE* file;
     SPConfig config;
-    char line[MAX_LEN], var[MAX_LEN];
+    char line[MAX_LEN], trimmedLine[MAX_LEN], var[MAX_LEN];
     int tempNum, lineNumber=0;
     bool isSet[4] = {false};	//todo paz: check if everything is set to false
 
 
-    if (msg == NULL)
-    {
-        return NULL;  //todo paz: check if it should be.
-    }
+//    if (msg == NULL)
+//    {
+//        return NULL;  //todo paz: check if it should be.
+//    }
 
     // reading the filename
     file = fopen(filename, "r");
@@ -188,6 +193,7 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
     {
     	lineNumber++;
         // this is a comment line and shouldn't be parsed
+    	//todo delete spaces
         if (line[0] == '#')
             // todo paz: maybe I should add here cond that validates there are no spaces before '#'
         {
@@ -195,25 +201,34 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
         }
 
         // removes spaces before and after all other characters
-        removeSpaces(line);
+//        removeSpaces(line); todo
+        trimWhiteSpace(trimmedLine, line);
+        printf("%s\n",trimmedLine);
 
-        // the line is not a valid line
-        if(hasSpacesInVar(line))
-        {
-        	printInvalidMessage(filename, lineNumber);
-        	printf("%s\n", line);
-        	freeStructMemory(config);
-        	exit(1);
-        }
+//        // the line is not a valid line
+//        if(hasSpacesInVar(trimmedLine))
+//        {
+//        	printInvalidMessage(filename, lineNumber);
+//        	freeStructMemory(config);
+//        	exit(1);
+//        }//todo
+
+//        // after checking there are no spaces inside a variable, we can remove all spaces
+//        removeSpaces(trimmedLine);//todo
 
         char *cfLine;
-        cfLine = strstr((char*)line, DELIMITER);
+        char second[MAX_LEN];
+
+        // splitting the line into two parts, using '=' as delimiter
+        cfLine = strstr((char*)trimmedLine, DELIMITER);
         cfLine = cfLine + strlen(DELIMITER);
 
-        // reads until delimiter =
-        sscanf(line, "%[^=]", var); //todo paz: change = to DELIMITER
+        trimWhiteSpace(cfLine, cfLine);
 
-        printf("var is --%s-- and cfLine is --%s--\n", var, cfLine);
+        // reads until delimiter =
+        sscanf(trimmedLine, "%[^=]", var); //todo paz: change = to DELIMITER
+        trimWhiteSpace(var, var);
+
 
         // checking there are no constrains violations
         //todo
@@ -477,6 +492,151 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
     	exit(1);
 	}
 
-	printf("created successfully. dir is: %s", config->spImagesDirectory); //todo delete
+	*msg = SP_CONFIG_SUCCESS;
     return config;
 }
+
+
+
+bool spConfigIsExtractionMode(const SPConfig config, SP_CONFIG_MSG* msg)
+{
+	if (msg == NULL)
+	{
+		return NULL;
+	}
+
+	if (config == NULL) {
+		*msg = SP_CONFIG_INVALID_ARGUMENT;
+		return NULL;
+	}
+
+	if (config->spExtractionMode)
+	{
+		*msg = SP_CONFIG_SUCCESS;
+		return true;
+	}
+	else
+	{
+		*msg = SP_CONFIG_SUCCESS;
+		return false;
+	}
+}
+
+bool spConfigMinimalGui(const SPConfig config, SP_CONFIG_MSG* msg)
+{
+	if (msg == NULL)
+	{
+		return NULL;
+	}
+
+	if (config == NULL) {
+		*msg = SP_CONFIG_INVALID_ARGUMENT;
+		return NULL;
+	}
+
+	if (config->spMinimalGUI)
+	{
+		*msg = SP_CONFIG_SUCCESS;
+		return true;
+	}
+	else
+	{
+		*msg = SP_CONFIG_SUCCESS;
+		return false;
+	}
+}
+
+int spConfigGetNumOfImages(const SPConfig config, SP_CONFIG_MSG* msg)
+{
+	if (msg == NULL)
+	{
+		return -1;
+	}
+
+	if (config == NULL) {
+		*msg = SP_CONFIG_INVALID_ARGUMENT;
+		return -1;
+	}
+	int num = config->spNumOfImages;
+	*msg = SP_CONFIG_SUCCESS;
+	return num;
+}
+
+int spConfigGetNumOfFeatures(const SPConfig config, SP_CONFIG_MSG* msg)
+{
+	if (msg == NULL)
+	{
+		return -1;
+	}
+
+	if (config == NULL) {
+		*msg = SP_CONFIG_INVALID_ARGUMENT;
+		return -1;
+	}
+	int num = config->spNumOfFeatures;
+	*msg = SP_CONFIG_SUCCESS;
+	return num;
+}
+
+int spConfigGetPCADim(const SPConfig config, SP_CONFIG_MSG* msg)
+{
+	if (msg == NULL)
+	{
+		return -1;
+	}
+
+	if (config == NULL) {
+		*msg = SP_CONFIG_INVALID_ARGUMENT;
+		return -1;
+	}
+	int num = config->spPCADimension;
+	*msg = SP_CONFIG_SUCCESS;
+	return num;
+}
+
+SP_CONFIG_MSG spConfigGetImagePath(char* imagePath, const SPConfig config,
+		int index)
+{
+	if(imagePath == NULL || config == NULL)
+	{
+		return SP_CONFIG_INVALID_ARGUMENT;
+	}
+	if (config->spNumOfImages < index)
+	{
+		return SP_CONFIG_INDEX_OUT_OF_RANGE;
+	}
+	char num[MAX_LEN];
+
+	strcpy(imagePath, config->spImagesDirectory);
+	strcat(imagePath, config->spImagesPrefix);
+//	itoa(index, num, 10); //todo
+	strcat(imagePath, num);
+	strcat(imagePath, config->spImagesSuffix);
+	return SP_CONFIG_SUCCESS;
+}
+
+SP_CONFIG_MSG spConfigGetPCAPath(char* pcaPath, const SPConfig config)
+{
+	if(pcaPath == NULL || config == NULL)
+	{
+		return SP_CONFIG_INVALID_ARGUMENT;
+	}
+	if (config->spNumOfImages < index)
+	{
+		return SP_CONFIG_INDEX_OUT_OF_RANGE;
+	}
+	char num[MAX_LEN];
+
+	strcpy(pcaPath, config->spImagesDirectory);
+	strcat(pcaPath, config->spPCAFilename);
+	return SP_CONFIG_SUCCESS;
+}
+
+void spConfigDestroy(SPConfig config)
+{
+	free(config);
+	return;
+	//todo should I free anything else??
+}
+
+
