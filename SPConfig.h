@@ -3,7 +3,7 @@
 
 #include <stdbool.h>
 #include <stdio.h>
-//#include "SPLogger.h" todo paz uncomment
+#include "SPLogger.h"
 
 // initialization:
 # define MAX_LEN 1024
@@ -200,5 +200,63 @@ SP_CONFIG_MSG spConfigGetPCAPath(char* pcaPath, const SPConfig config);
  * If config == NULL nothig is done.
  */
 void spConfigDestroy(SPConfig config);
+
+/**
+ * This function receives a string and an output string, and removes all whitespaces
+ * before the beginning of the string and after the end of the string.
+ *
+ * @param out - output
+ * @param str - input
+ * @return: length of the output string
+ */
+int trimWhiteSpace(char *out, const char *str);
+
+
+/**
+ * removes all spaces in string, in place
+ * @param source - source string.
+ */
+void removeSpaces(char* source);
+
+
+/**
+ * checks if there are spaces in the string
+ * @param s - source string
+ * @return:
+ * 		- true if exists
+ * 		- false ow
+ */
+bool hasSpaces(const char *s);
+
+
+/**
+ * checks if there are spaces in the string, but only inside a variable
+ * if the string is in the format of <a> = <b>, the function checks
+ * only inside a and inside b
+ *
+ * @param s - source string
+ * @return:
+ * 		- true if exists
+ * 		- false ow
+ */
+bool hasSpacesInVar(const char *s);
+
+
+/**
+ * prints error message
+ */
+void printInvalidMessage(char* filename, int lineNum);
+
+
+/**
+ * prints constraint not met message
+ */
+void printConstraintNotMet(const char* filename, int lineNum);
+
+
+/**
+ * prints constraint not met message with the relevant parameter
+ */
+void printConstraintNotMetWithParam(const char* filename, int lineNum, char* parameter);
 
 #endif /* SPCONFIG_H_ */

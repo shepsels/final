@@ -17,7 +17,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////// Help Functions \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-// todo paz: add functions to header file or to another file
+
 int trimWhiteSpace(char *out, const char *str)
 {
 	int len = 0;
@@ -60,7 +60,6 @@ int trimWhiteSpace(char *out, const char *str)
 	return out_size;
 }
 
-//helper function to remove spaces
 void removeSpaces(char* source)
 {
   char* i = source;
@@ -169,7 +168,8 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
     if (file == NULL)
     {
         // cannot open the file
-        return SP_CONFIG_CANNOT_OPEN_FILE;
+    	*msg = SP_CONFIG_CANNOT_OPEN_FILE;
+        return NULL;
     }
 
     // creating the new configuration struct
@@ -217,7 +217,6 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 //        removeSpaces(trimmedLine);//todo
 
         char *cfLine;
-        char second[MAX_LEN];
 
         // splitting the line into two parts, using '=' as delimiter
         cfLine = strstr((char*)trimmedLine, DELIMITER);
@@ -609,7 +608,8 @@ SP_CONFIG_MSG spConfigGetImagePath(char* imagePath, const SPConfig config,
 
 	strcpy(imagePath, config->spImagesDirectory);
 	strcat(imagePath, config->spImagesPrefix);
-//	itoa(index, num, 10); //todo
+
+	snprintf(num, 12,"%d",index); //todo check that its working
 	strcat(imagePath, num);
 	strcat(imagePath, config->spImagesSuffix);
 	return SP_CONFIG_SUCCESS;
@@ -639,4 +639,14 @@ void spConfigDestroy(SPConfig config)
 	//todo should I free anything else??
 }
 
+SP_CONFIG_MSG spGetImageDir(char* imgDir, const SPConfig config)
+{
+	if(imgDir == NULL || config == NULL)
+	{
+		return SP_CONFIG_INVALID_ARGUMENT;
+	}
+
+	strcpy(imgDir, config->spImagesDirectory);
+	return SP_CONFIG_SUCCESS;
+}
 
