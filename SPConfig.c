@@ -203,7 +203,7 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
         // removes spaces before and after all other characters
 //        removeSpaces(line); todo
         trimWhiteSpace(trimmedLine, line);
-        printf("%s\n",trimmedLine);
+//        printf("%s\n",trimmedLine);
 
 //        // the line is not a valid line
 //        if(hasSpacesInVar(trimmedLine))
@@ -250,6 +250,7 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 
         	// copy cfLine to the correct attribute of config
             memcpy(config->spImagesDirectory, cfLine, strlen(cfLine));
+            config->spImagesDirectory[strlen(cfLine)] = '\0';
             isSet[0] = true;
         }
 
@@ -270,6 +271,7 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 
 			// copy cfLine to the correct attribute of config
 			memcpy(config->spImagesPrefix, cfLine, strlen(cfLine));
+			config->spImagesPrefix[strlen(cfLine)] = '\0';
 			isSet[1] = true;
 		}
 
@@ -293,6 +295,8 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 
 			// copy cfLine to the correct attribute of config
 			memcpy(config->spImagesSuffix, cfLine, strlen(cfLine));
+			config->spImagesSuffix[strlen(cfLine)] = '\0';
+
 			isSet[2] = true;
 		}
 
@@ -354,6 +358,8 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 
 			// copy cfLine to the correct attribute of config
 			memcpy(config->spPCAFilename, cfLine, strlen(cfLine));
+			config->spPCAFilename[strlen(cfLine)] = '\0';
+
 		}
 
         // ---7--- var is spNumOfFeatures
@@ -463,6 +469,8 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 
 			// copy cfLine to the correct attribute of config
 			memcpy(config->spLoggerFilename, cfLine, strlen(cfLine));
+			config->spLoggerFilename[strlen(cfLine)] = '\0';
+
 		}
     }
     // after reading the file, should check that all mandatory variables are initialized
@@ -621,10 +629,6 @@ SP_CONFIG_MSG spConfigGetPCAPath(char* pcaPath, const SPConfig config)
 	{
 		return SP_CONFIG_INVALID_ARGUMENT;
 	}
-	if (config->spNumOfImages < index)
-	{
-		return SP_CONFIG_INDEX_OUT_OF_RANGE;
-	}
 	char num[MAX_LEN];
 
 	strcpy(pcaPath, config->spImagesDirectory);
@@ -639,14 +643,38 @@ void spConfigDestroy(SPConfig config)
 	//todo should I free anything else??
 }
 
-SP_CONFIG_MSG spGetImageDir(char* imgDir, const SPConfig config)
+void spGetImageDir(char* output, const SPConfig config) //todo refine
 {
-	if(imgDir == NULL || config == NULL)
+	if(config == NULL)
+	{
+		return;
+	}
+
+	strcpy(output, config->spImagesDirectory);
+	return;
+}
+
+SP_LOGGER_LEVEL spGetLoggerLevel(const SPConfig config)
+{
+	if(config == NULL)
 	{
 		return SP_CONFIG_INVALID_ARGUMENT;
 	}
-
-	strcpy(imgDir, config->spImagesDirectory);
-	return SP_CONFIG_SUCCESS;
+	if (config->spLoggerLevel == 1)
+	{
+		return SP_LOGGER_ERROR_LEVEL;
+	}
+	else if (config->spLoggerLevel == 2)
+	{
+		return SP_LOGGER_WARNING_ERROR_LEVEL;
+	}
+	else if (config->spLoggerLevel == 3)
+	{
+		return SP_LOGGER_INFO_WARNING_ERROR_LEVEL;
+	}
+	else
+		//config->spLoggerLevel == 4
+	{
+		return SP_LOGGER_DEBUG_INFO_WARNING_ERROR_LEVEL;
+	}
 }
-

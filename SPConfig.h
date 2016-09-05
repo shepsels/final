@@ -1,4 +1,4 @@
-						#ifndef SPCONFIG_H_
+#ifndef SPCONFIG_H_
 #define SPCONFIG_H_
 
 #include <stdbool.h>
@@ -258,5 +258,12 @@ void printConstraintNotMet(const char* filename, int lineNum);
  * prints constraint not met message with the relevant parameter
  */
 void printConstraintNotMetWithParam(const char* filename, int lineNum, char* parameter);
+
+/**
+ * returns spconfig image directory
+ */
+void spGetImageDir(char* output, const SPConfig config);
+
+SP_LOGGER_LEVEL spGetLoggerLevel(const SPConfig config);
 
 #endif /* SPCONFIG_H_ */

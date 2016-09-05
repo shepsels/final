@@ -66,17 +66,17 @@ static bool hasSpacesInVarTest() {
 
 
 
-int main() {
-    SPConfig conf_a;
-    SP_CONFIG_MSG * msg;
-
-    conf_a = spConfigCreate("configFile3_valid.txt", msg);
-//    printf("%d\n", conf_a->spKNN);
-
-
-	RUN_TEST(spConfigCreateTest_1);
-
-
-    RUN_TEST(hasSpacesInVarTest);
-    return 0;
-}
+//int main() {
+//    SPConfig conf_a;
+//    SP_CONFIG_MSG * msg;
+//
+//    conf_a = spConfigCreate("configFile3_valid.txt", msg);
+////    printf("%d\n", conf_a->spKNN);
+//
+//
+//	RUN_TEST(spConfigCreateTest_1);
+//
+//
+//    RUN_TEST(hasSpacesInVarTest);
+//    return 0;
+//}

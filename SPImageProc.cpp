@@ -51,11 +51,11 @@ void sp::ImageProc::initFromConfig(const SPConfig config) {
 		spLoggerPrintError(NUM_OF_FEATS_ERROR, __FILE__, __func__, __LINE__);
 		throw Exception();
 	}
-	minimalGui = spConfigMinialGui(config, &msg);
-	if (msg != SP_CONFIG_SUCCESS) {
-		spLoggerPrintError(MINIMAL_GUI_ERROR, __FILE__, __func__, __LINE__);
-		throw Exception();
-	}
+//	minimalGui = spConfigMinialGui(config, &msg); //todo uncomment
+//	if (msg != SP_CONFIG_SUCCESS) {
+//		spLoggerPrintError(MINIMAL_GUI_ERROR, __FILE__, __func__, __LINE__);
+//		throw Exception();
+//	}
 }
 
 void sp::ImageProc::getImagesMat(vector<Mat>& images, const SPConfig config) {
