@@ -88,7 +88,6 @@ int main( int argc, char *argv[] )  {
 			ptArr = imageProc.getImageFeatures(imgPath, i, &numOfFeats);
 			saveFeatsToFile(ptArr, numOfFeats, i, config);
 		}
-
 	}
 //
 //	//******************************************//

@@ -12,7 +12,8 @@ bool saveFeatsToFile(SPPoint* imageInfo, int numberOfFeats, int index, SPConfig 
 	char *pointerToPoint;
 	char filePath[MAX_LEN];
 	SP_CONFIG_MSG msg;
-	int returnVal;
+	SPPoint curr;
+	int returnVal, i, j;
 
 	if (!imageInfo || numberOfFeats < 1 || index < 0 || config == NULL)
 	{
@@ -30,7 +31,6 @@ bool saveFeatsToFile(SPPoint* imageInfo, int numberOfFeats, int index, SPConfig 
 	}
 
 	// received successfully. now creating the output file (changing filepath's end to ".feats")
-	printf("filepath is: --%d\n", strlen(filePath));
 
 	// set the pointer to point to the beginning of the path
 	pointerToPoint = filePath;
@@ -54,8 +54,20 @@ bool saveFeatsToFile(SPPoint* imageInfo, int numberOfFeats, int index, SPConfig 
 
 	returnVal = fprintf(out, "%d$%d$", index, numberOfFeats);
 
+	for(i=0; i < numberOfFeats; i++)
+		//todo document and make easier to read.also perform checks
+	{
+		curr = imageInfo[i];
+		for(j=0; j<spPointGetDimension(curr); j++)
+		{
+			returnVal = fprintf(out, "%f$", spPointGetAxisCoor(curr, j));
+		}
+		returnVal = fprintf(out, "%s", "\n");
 
-	printf("new path: %s\n", filePath);
+	}
+
+	// todo save here all the features!
+
 	fclose(out);
 	return true;
 }
