@@ -128,18 +128,17 @@ bool lineToDoubleArray (double* lineArray, int dim, char* line, char* delim)
     /* walk through other tokens */
     while(token)
     {
-    	lineArray[cnt] = strtod(token, NULL);
-
-//        printf("token: %s and lineArray[]: %s\n", token, lineArray[cnt]);
+    	tmp = strtod(token, NULL);
+    	lineArray[cnt] = tmp;
         token = strtok(NULL, delim);
         cnt++;
     }
     return lineArray;
 }
 
-bool extractImagesFromFeats(SPConfig config, int numberOfPoints, SPPoint* points)
+int extractImagesFromFeats(SPConfig config, int numberOfPoints, SPPoint** points)
 {
-    int i, imgIndex, featsPerImg, currSize=0;
+    int i, imgIndex, featsPerImg, currSize=0, counterAllPoints=0;
     char *path = config->spImagesDirectory, *feats = FEATS;
     char *pointerToPoint;
     char imgPath[MAX_LEN], line[MAX_LEN];
@@ -147,9 +146,15 @@ bool extractImagesFromFeats(SPConfig config, int numberOfPoints, SPPoint* points
     const char delim[2] = "$";
     char *token;
 
+    // initial allocation
+    points = (SPPoint**)malloc(sizeof(SPPoint*));
+
     // loop over all files and extract their features
     for (i=0; i < config->spNumOfImages; i++)
     {
+    	fflush(NULL);
+    	printf("----------beginning of the %d th loop\n", i);
+    	fflush(NULL);
         spConfigGetImagePath(imgPath, config, i);
 
         // set the pointer to point to the beginning of the path
@@ -181,19 +186,62 @@ bool extractImagesFromFeats(SPConfig config, int numberOfPoints, SPPoint* points
 
         // re-allocate point array size by the number of features per image
         currSize += featsPerImg;
-        points = (SPPoint*)realloc(points, currSize * sizeof(SPPoint*));
 
+        fflush(NULL);
+        printf("******** the new size of allocation is %d\n", currSize);
+        points = (SPPoint**)realloc(points, currSize * sizeof(SPPoint*));
+
+        fflush(NULL);
         printf("index is: %d, and number of feats is: %d\n", imgIndex, featsPerImg); //todo delete
-
+        fflush(NULL);
         // running over the features file and reading
         while(fgets(line, MAX_LEN, file))
         {
-            SPPoint dataLine;
+            // create sppoint for feature (line)
+//             dataLine;
+            //create data array with all the information from the whole line
+            double *data = (double*)malloc(config->spPCADimension*sizeof(double));
+
+            fflush(NULL);
+            printf("data array created\n"); //todo delete
+            fflush(NULL);
+
+            lineToDoubleArray(data, config->spPCADimension, line, "$"); //todo change delimiter
+
+            fflush(NULL);
+            printf("line parsed\n"); //todo delete
+            fflush(NULL);
+
+            SPPoint dataLine = spPointCreate(data, config->spPCADimension, imgIndex);
+
+            fflush(NULL);
+            printf("the %d point created\n", counterAllPoints); //todo delete
+            fflush(NULL);
+
+            //todo connect each point to points array
+
+            // save the pointer to the correct place in points array
+            points[counterAllPoints] = &dataLine;
+
+            fflush(NULL);
+            printf("point inserted\n"); //todo delete
+            fflush(NULL);
+
+            counterAllPoints++;
+//            fflush(NULL);
+//            printf("point id: %d\n", points[0][0]->index);
+//            fflush(NULL);
+//            printf("point first data: %f\n", points[0][0]->data[0]);
+//            fflush(NULL);
+
+            //free
+            free(data);
         }
     }
-
-
-    return true;
+    fflush(NULL);
+    printf("the total count is: %d", counterAllPoints);
+    fflush(NULL);
+    return counterAllPoints;
 }
 
 bool fromFilesToKDTree(SPConfig config,SPKDArray array, KDTreeNode tree, SPPoint* points)
