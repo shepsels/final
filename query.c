@@ -1,7 +1,7 @@
 /*
  * query.c
  *
- *  Created on: 7 áñôè× 2016
+ *  Created on: 7 ï¿½ï¿½ï¿½ï¿½ï¿½ 2016
  *      Author: Noa
  */
 
@@ -17,6 +17,15 @@
 
 // todo init:Maintain a BPQ of the candidate nearest neighbors, called 'bpq'
 // todo Set the maximum size of 'bpq' to spKNN    (in main?)
+
+struct image_counter {
+	int index;
+	int cnt;
+};
+typedef struct image_counter * imageCounter;
+
+
+
 
 void kNearestNeighbors(KDTreeNode curr , SPBPQueue bpq, SPPoint p){
 	SPListElement newE;

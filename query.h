@@ -1,7 +1,7 @@
 /*
  * query.h
  *
- *  Created on: 7 áñôè× 2016
+ *  Created on: 7 ï¿½ï¿½ï¿½ï¿½ï¿½ 2016
  *      Author: Noa
  */
 
@@ -11,4 +11,9 @@
 void kNearestNeighbors(KDTreeNode curr , SPBPQueue bpq, SPPoint p);
 bool isLeaf(KDTreeNode curr);
 
+struct image_counter;
+typedef struct image_counter * imageCounter;
+
+
 #endif /* QUERY_H_ */
+
