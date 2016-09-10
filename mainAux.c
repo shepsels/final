@@ -253,7 +253,7 @@ SPPoint* extractImagesFromFeats(SPConfig config, int* numOfFeatures)
     return points;
 }
 
-bool fromFilesToKDTree(SPConfig config,SPKDArray array, KDTreeNode tree, SPPoint* points)
+bool fromFilesToKDTree(SPConfig config,SPKDArray array, KDTreeNode *tree, SPPoint* points)
 {
     int numberOfPoints;
 
@@ -265,7 +265,7 @@ bool fromFilesToKDTree(SPConfig config,SPKDArray array, KDTreeNode tree, SPPoint
     //todo validate
 
     // initialize the tree
-    tree = kdTreeInit(array, config->spKDTreeSplitMethod, numberOfPoints);
+    *tree = kdTreeInit(array, config->spKDTreeSplitMethod, numberOfPoints);
     //todo validate
 
 

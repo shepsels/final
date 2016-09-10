@@ -105,7 +105,7 @@ void imgCntIncrementCounter(imageCounter imgCnt){
 
 void updateImageCounter(imageCounter* imagesCntArr, SPBPQueue bpq, int bpqSize){
 	int i;
-	SPBPQueue tmp;
+	SPListElement tmp;
 
 	for (i=0 ; i<bpqSize ; i++){
 		tmp=spBPQueuePeek(bpq);

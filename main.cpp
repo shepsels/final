@@ -123,7 +123,7 @@ int main( int argc, char *argv[] )  {
 	SPKDArray array;
 	KDTreeNode tree;
 
-	bool isExtracted = fromFilesToKDTree(config, array, tree, allPoints); //todo this is bool. validate later
+	bool isExtracted = fromFilesToKDTree(config, array, &tree, allPoints); //todo this is bool. validate later
 	if(!isExtracted)
 	{
         // logger error
@@ -136,10 +136,12 @@ int main( int argc, char *argv[] )  {
 		/////////////////////////////////////////// query
 
 	printf("Please enter an image path:\n");
+	fflush(NULL);
 	scanf("%s", imagePath);
+	fflush(NULL);
 
     // memory allocation for the images counter array
-    imagesCntArr = (imageCounter *)malloc(config->spNumOfImages* sizeof(struct image_counter));
+    imagesCntArr = (imageCounter *)malloc(config->spNumOfImages* sizeof(imageCounter));
 
     // memory allocation failure
     if(!imagesCntArr)
@@ -149,13 +151,13 @@ int main( int argc, char *argv[] )  {
     }
 
     // initializing the image count array with image_counter instances
-    for(i=0; config->spNumOfImages; i++)
+    for(i=0; i < config->spNumOfImages; i++)
     {
         imagesCntArr[i] = imageCounterCreate(i, 0);
     }
 
 
-    queryFeats = imageProc.getImageFeatures(imagePath, -1, &queryNumOfFeats);
+    queryFeats = imageProc.getImageFeatures(imagePath, 0, &queryNumOfFeats);
 
     queue = spBPQueueCreate(config->spKNN);
 
@@ -194,7 +196,7 @@ int main( int argc, char *argv[] )  {
     else
     {
         printf("Best candidates for - %s - are:\n", imagePath);
-        for(i=0; i < config->spNumOfSimilarImages; )
+        for(i=0; i < config->spNumOfSimilarImages; i++)
         {
             // build path for image
             imgPath[0] = '\0';

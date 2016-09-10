@@ -21,7 +21,7 @@ void freeAndExit(SPConfig config, KDTreeNode tree, int* images);
 
 bool saveFeatsToFile(SPPoint* imageInfo, int numberOfFeats, int index, SPConfig config);
 
-bool fromFilesToKDTree(SPConfig config,SPKDArray array, KDTreeNode tree, SPPoint* points);
+bool fromFilesToKDTree(SPConfig config,SPKDArray array, KDTreeNode *tree, SPPoint* points);
 
 
 #endif /* MAINAUX_H_ */
