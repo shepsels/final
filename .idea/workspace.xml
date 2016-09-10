@@ -10,21 +10,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="380ca56a-44ea-4212-afe6-5190f8a3a038" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Debug/SPConfig.o" afterPath="$PROJECT_DIR$/Debug/SPConfig.o" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/KDArray.c" afterPath="$PROJECT_DIR$/KDArray.c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/KDArray.h" afterPath="$PROJECT_DIR$/KDArray.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SPConfig.c" afterPath="$PROJECT_DIR$/SPConfig.c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SPPoint.c" afterPath="$PROJECT_DIR$/SPPoint.c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/img0.feats" afterPath="$PROJECT_DIR$/images/img0.feats" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/img1.feats" afterPath="$PROJECT_DIR$/images/img1.feats" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/img2.feats" afterPath="$PROJECT_DIR$/images/img2.feats" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/img3.feats" afterPath="$PROJECT_DIR$/images/img3.feats" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Debug/finalProj_opencv.exe" afterPath="$PROJECT_DIR$/Debug/finalProj_opencv.exe" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Debug/main.o" afterPath="$PROJECT_DIR$/Debug/main.o" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Debug/unit_tests/mainAux_unit_test.o" afterPath="$PROJECT_DIR$/Debug/unit_tests/mainAux_unit_test.o" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SPConfig.h" afterPath="$PROJECT_DIR$/SPConfig.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/img4.feats" afterPath="$PROJECT_DIR$/images/img4.feats" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/pca.yml" afterPath="$PROJECT_DIR$/images/pca.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/logger_output.txt" afterPath="$PROJECT_DIR$/images/logger_output.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.cpp" afterPath="$PROJECT_DIR$/main.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainAux.c" afterPath="$PROJECT_DIR$/mainAux.c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainAux.h" afterPath="$PROJECT_DIR$/mainAux.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/query.c" afterPath="$PROJECT_DIR$/query.c" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/query.h" afterPath="$PROJECT_DIR$/query.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spcbir.config" afterPath="$PROJECT_DIR$/spcbir.config" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/unit_tests/mainAux_unit_test.c" afterPath="$PROJECT_DIR$/unit_tests/mainAux_unit_test.c" />
     </list>
@@ -69,8 +64,8 @@
       <file leaf-file-name="main.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1481">
-              <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
+            <state relative-caret-position="270">
+              <caret line="177" column="12" selection-start-line="177" selection-start-column="12" selection-end-line="177" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -79,24 +74,39 @@
       <file leaf-file-name="query.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/query.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="188">
+              <caret line="94" column="1" selection-start-line="94" selection-start-column="1" selection-end-line="94" selection-end-column="1" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mainAux.c" pinned="false" current-in-tab="true">
+      <file leaf-file-name="query.h" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/query.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SPBPriorityQueue.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SPBPriorityQueue.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-340">
+              <caret line="109" column="17" selection-start-line="109" selection-start-column="17" selection-end-line="109" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mainAux.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mainAux.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2018">
+            <state relative-caret-position="2970">
               <caret line="247" column="32" selection-start-line="247" selection-start-column="32" selection-end-line="247" selection-end-column="32" />
-              <folding>
-                <marker date="1473504576514" expanded="true" signature="284:476" ph="{...}" />
-                <marker date="1473504576514" expanded="true" signature="566:2518" ph="{...}" />
-                <marker date="1473504576514" expanded="true" signature="2520:2693" ph="//..." />
-                <marker date="1473504576514" expanded="true" signature="2772:2775" ph="{...}" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -106,9 +116,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1411">
               <caret line="86" column="12" selection-start-line="86" selection-start-column="12" selection-end-line="86" selection-end-column="12" />
-              <folding>
-                <marker date="1473503193431" expanded="true" signature="2074:2076" ph="{...}" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -116,21 +124,9 @@
       <file leaf-file-name="SPConfig.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SPConfig.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="314">
-              <caret line="176" column="14" selection-start-line="176" selection-start-column="14" selection-end-line="176" selection-end-column="14" />
+            <state relative-caret-position="241">
+              <caret line="163" column="34" selection-start-line="163" selection-start-column="14" selection-end-line="163" selection-end-column="34" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="KDTree.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/KDTree.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="17" column="77" selection-start-line="17" selection-start-column="50" selection-end-line="17" selection-end-column="84" />
-              <folding>
-                <marker date="1473501847393" expanded="true" signature="0:70" ph="/.../" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -150,16 +146,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="configFile1.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/configFile1.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="Git.Settings">
@@ -171,10 +157,13 @@
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/SPBPriorityQueue.h" />
         <option value="$PROJECT_DIR$/SPBPriorityQueue.c" />
-        <option value="$PROJECT_DIR$/main.cpp" />
         <option value="$PROJECT_DIR$/SPConfig.c" />
         <option value="$PROJECT_DIR$/unit_tests/mainAux_unit_test.c" />
         <option value="$PROJECT_DIR$/mainAux.c" />
+        <option value="$PROJECT_DIR$/SPConfig.h" />
+        <option value="$PROJECT_DIR$/query.c" />
+        <option value="$PROJECT_DIR$/query.h" />
+        <option value="$PROJECT_DIR$/main.cpp" />
       </list>
     </option>
   </component>
@@ -461,22 +450,22 @@
       <option name="presentableId" value="Default" />
       <updated>1473191819386</updated>
       <workItem from="1473191831156" duration="1360000" />
-      <workItem from="1473324486434" duration="19549000" />
+      <workItem from="1473324486434" duration="25508000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20909000" />
+    <option name="totallyTimeSpent" value="26868000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24304539" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1647145" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19400631" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19400631" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13564669" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -595,30 +584,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SPBPriorityQueue.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="109" column="17" selection-start-line="109" selection-start-column="17" selection-end-line="109" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/query.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/query.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/KDTree.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -650,26 +615,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/SPConfig.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="191" column="37" selection-start-line="191" selection-start-column="37" selection-end-line="191" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SPBPriorityQueue.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-340">
+          <caret line="109" column="17" selection-start-line="109" selection-start-column="17" selection-end-line="109" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mainAux.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2970">
+          <caret line="247" column="32" selection-start-line="247" selection-start-column="32" selection-end-line="247" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/unit_tests/mainAux_unit_test.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1411">
+          <caret line="86" column="12" selection-start-line="86" selection-start-column="12" selection-end-line="86" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/SPConfig.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="176" column="14" selection-start-line="176" selection-start-column="14" selection-end-line="176" selection-end-column="14" />
+        <state relative-caret-position="241">
+          <caret line="163" column="34" selection-start-line="163" selection-start-column="14" selection-end-line="163" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1481">
-          <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SPConfig.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="191" column="37" selection-start-line="191" selection-start-column="37" selection-end-line="191" selection-end-column="37" />
+        <state relative-caret-position="270">
+          <caret line="177" column="12" selection-start-line="177" selection-start-column="12" selection-end-line="177" selection-end-column="12" />
           <folding />
         </state>
       </provider>
@@ -682,26 +671,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/unit_tests/mainAux_unit_test.c">
+    <entry file="file://$PROJECT_DIR$/query.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1411">
-          <caret line="86" column="12" selection-start-line="86" selection-start-column="12" selection-end-line="86" selection-end-column="12" />
-          <folding>
-            <marker date="1473503193431" expanded="true" signature="2074:2076" ph="{...}" />
-          </folding>
+        <state relative-caret-position="188">
+          <caret line="94" column="1" selection-start-line="94" selection-start-column="1" selection-end-line="94" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mainAux.c">
+    <entry file="file://$PROJECT_DIR$/query.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2018">
-          <caret line="247" column="32" selection-start-line="247" selection-start-column="32" selection-end-line="247" selection-end-column="32" />
-          <folding>
-            <marker date="1473504576514" expanded="true" signature="284:476" ph="{...}" />
-            <marker date="1473504576514" expanded="true" signature="566:2518" ph="{...}" />
-            <marker date="1473504576514" expanded="true" signature="2520:2693" ph="//..." />
-            <marker date="1473504576514" expanded="true" signature="2772:2775" ph="{...}" />
-          </folding>
+        <state relative-caret-position="119">
+          <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -28,9 +28,9 @@ int main( int argc, char *argv[] )  {
 	char* defaultFile = "spcbir.config";
 	char imgPath[MAX_LEN], loggerOutput[MAX_LEN], imgDir[MAX_LEN], imagePath[MAX_LEN];
     int bestImagesIndexes[MAX_LEN];
-    imageCounter* imagesCnt;
+    imageCounter* imagesCntArr;
 
-	SPPoint* ptArr, queryFeats;
+	SPPoint* ptArr, *queryFeats;
 	SPConfig config;
 	SP_CONFIG_MSG msg;
     SPBPQueue queue;
@@ -126,8 +126,10 @@ int main( int argc, char *argv[] )  {
 	bool isExtracted = fromFilesToKDTree(config, array, tree, allPoints); //todo this is bool. validate later
 	if(!isExtracted)
 	{
-		//todo freeandexit
-		printf("ERROR!!");
+        // logger error
+        spLoggerPrintError("cannot create KDTree", imgPath, "fromFilesToKDTree", __LINE__);
+
+        freeAndExit(config,tree, NULL);
 	}
 
 
@@ -137,7 +139,21 @@ int main( int argc, char *argv[] )  {
 	scanf("%s", imagePath);
 
     // memory allocation for the images counter array
-    imagesCnt = (imageCounter *)malloc(config->spNumOfImages* sizeof(struct image_counter));
+    imagesCntArr = (imageCounter *)malloc(config->spNumOfImages* sizeof(struct image_counter));
+
+    // memory allocation failure
+    if(!imagesCntArr)
+    {
+        // todo logger error
+        freeAndExit(config, tree, NULL);
+    }
+
+    // initializing the image count array with image_counter instances
+    for(i=0; config->spNumOfImages; i++)
+    {
+        imagesCntArr[i] = imageCounterCreate(i, 0);
+    }
+
 
     queryFeats = imageProc.getImageFeatures(imagePath, -1, &queryNumOfFeats);
 
@@ -145,38 +161,48 @@ int main( int argc, char *argv[] )  {
 
     for(i=0; i<queryNumOfFeats; i++)
     {
-        spBPQueueClear(queue);
+        spBPQueueClear(queue);// todo check if needed
+
+        // find the nearest neighbours
         kNearestNeighbors(tree, queue, queryFeats[i]);
 
-
+        updateImageCounter(imagesCntArr, queue, config->spKNN);
     }
 
-
-    // todo: here we have the indexes of the best images
-
+    // qsort
+    qsort(imagesCntArr, config->spNumOfImages, sizeof(imageCounter), imgCntComparator);
 
 
     // minimal GUI
+
+    // todo add edge case: what happens if there are less images then it should
     if(config->spMinimalGUI)
     {
-        // running over all images in queue
-        while(spBPQueueSize(queue))
+        // running over the best images in imagesCntArr
+        for (i=0; i < config->spNumOfSimilarImages; i++)
         {
-            spBPQueuePeek(queue);
-        }
-
-        for(i=0; i < config->spKNN; i++)
-        {
-            //build path for every image //todo check if needed, or getting the paths
+            // get image path
             imgPath[0] = '\0';
-            spConfigGetImagePath(imgPath, config, bestImagesIndexes[i]);
+            spConfigGetImagePath(imgPath, config, imgCntGetIndex(imagesCntArr[i])); //todo check if that's the way to get the index
+
+            // for every image, show image
             imageProc.showImage(imgPath);
         }
     }
+
     // non minimal GUI
     else
     {
+        printf("Best candidates for - %s - are:\n", imagePath);
+        for(i=0; i < config->spNumOfSimilarImages; )
+        {
+            // build path for image
+            imgPath[0] = '\0';
+            spConfigGetImagePath(imgPath, config, imgCntGetIndex(imagesCntArr[i])); //todo check if that's the way to get the index
 
+            // print image path
+            printf("%s\n", imgPath);
+        }
     }
 
 

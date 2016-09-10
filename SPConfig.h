@@ -137,19 +137,6 @@ int spConfigGetNumOfImages(const SPConfig config, SP_CONFIG_MSG* msg);
 int spConfigGetNumOfFeatures(const SPConfig config, SP_CONFIG_MSG* msg);
 
 /**
- * Returns the dimension of the PCA. i.e the value of spPCADimension.
- *
- * @param config - the configuration structure
- * @assert msg != NULL
- * @param msg - pointer in which the msg returned by the function is stored
- * @return positive integer in success, negative integer otherwise.
- *
- * - SP_CONFIG_INVALID_ARGUMENT - if config == NULL
- * - SP_CONFIG_SUCCESS - in case of success
- */
-int spConfigGetPCADim(const SPConfig config, SP_CONFIG_MSG* msg);
-
-/**
  * Given an index 'index' the function stores in imagePath the full path of the
  * ith image.
  *
@@ -175,7 +162,20 @@ int spConfigGetPCADim(const SPConfig config, SP_CONFIG_MSG* msg);
  * - SP_CONFIG_SUCCESS - in case of success
  */
 SP_CONFIG_MSG spConfigGetImagePath(char* imagePath, const SPConfig config,
-		int index);
+								   int index);
+
+/**
+ * Returns the dimension of the PCA. i.e the value of spPCADimension.
+ *
+ * @param config - the configuration structure
+ * @assert msg != NULL
+ * @param msg - pointer in which the msg returned by the function is stored
+ * @return positive integer in success, negative integer otherwise.
+ *
+ * - SP_CONFIG_INVALID_ARGUMENT - if config == NULL
+ * - SP_CONFIG_SUCCESS - in case of success
+ */
+int spConfigGetPCADim(const SPConfig config, SP_CONFIG_MSG* msg);
 
 /**
  * The function stores in pcaPath the full path of the pca file.
