@@ -233,8 +233,9 @@ SPPoint* extractImagesFromFeats(SPConfig config, int* numOfFeatures)
 
     // copying the 2d matrix to an all points 1d matrix
     points = (SPPoint*)malloc(counterAllPoints*sizeof(SPPoint));
+    fflush(NULL);
     printf("counter for all: %d\n", counterAllPoints);
-
+    fflush(NULL);
     cnt2 = 0;
     for(i=0; i<config->spNumOfImages; i++)
     {
@@ -265,7 +266,7 @@ bool fromFilesToKDTree(SPConfig config,SPKDArray array, KDTreeNode *tree, SPPoin
     //todo validate
 
     // initialize the tree
-    *tree = kdTreeInit(array, config->spKDTreeSplitMethod, numberOfPoints);
+    *tree = kdTreeInit(array, config->spKDTreeSplitMethod, 0);
     //todo validate
 
 

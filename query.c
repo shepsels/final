@@ -28,13 +28,14 @@ typedef struct image_counter* imageCounter;
 void kNearestNeighbors(KDTreeNode curr , SPBPQueue bpq, SPPoint p){
 	SPListElement newE;
 	bool subTreeLeft;
-	double distance,squerd;
+	double distance;
 	if (curr==NULL){
 		return;
 	}
 
 	if (isLeaf(curr)==1){  //curr is a leaf
-		newE=spListElementCreate(spPointGetIndex(getNodeData(curr)),spPointL2SquaredDistance(getNodeData(curr),p));
+        distance = sqrt(spPointL2SquaredDistance(getNodeData(curr),p));
+		newE=spListElementCreate(spPointGetIndex(getNodeData(curr)),distance);
 		spBPQueueEnqueue(bpq,newE);
 		return;
 	}
@@ -48,9 +49,8 @@ void kNearestNeighbors(KDTreeNode curr , SPBPQueue bpq, SPPoint p){
 		subTreeLeft=false;
 	}
 
-	distance=(getNodeVal(curr)-(spPointGetAxisCoor(p,getNodeDim(curr))));
-	squerd=distance*distance;
-	if ((!spBPQueueIsFull(bpq))||(squerd<spBPQueueMinValue(bpq))){
+	distance=abs((getNodeVal(curr)-(spPointGetAxisCoor(p,getNodeDim(curr)))));
+	if ((!spBPQueueIsFull(bpq))||(distance<spBPQueueMaxValue(bpq))){
 		//recursively search the other subtree on the next axis todo delete
 		if (subTreeLeft){
 			kNearestNeighbors(getNodeRight(curr),bpq,p);

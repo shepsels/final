@@ -10,17 +10,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="380ca56a-44ea-4212-afe6-5190f8a3a038" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/spcbir.config" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Debug/finalProj_opencv.exe" afterPath="$PROJECT_DIR$/Debug/finalProj_opencv.exe" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Debug/main.o" afterPath="$PROJECT_DIR$/Debug/main.o" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Debug/mainAux.o" afterPath="$PROJECT_DIR$/Debug/mainAux.o" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Debug/query.o" afterPath="$PROJECT_DIR$/Debug/query.o" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/logger_output.txt" afterPath="$PROJECT_DIR$/images/logger_output.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.cpp" afterPath="$PROJECT_DIR$/main.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainAux.c" afterPath="$PROJECT_DIR$/mainAux.c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainAux.h" afterPath="$PROJECT_DIR$/mainAux.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/query.c" afterPath="$PROJECT_DIR$/query.c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spcbir.config" afterPath="$PROJECT_DIR$/spcbir.config" />
     </list>
     <ignored path="finalProj_opencv.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,16 +42,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="185">
               <caret line="184" column="17" selection-start-line="184" selection-start-column="12" selection-end-line="184" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="spcbir.config" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/spcbir.config">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="9" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -110,11 +97,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="query.c" pinned="false" current-in-tab="false">
+      <file leaf-file-name="query.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/query.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
-              <caret line="94" column="1" selection-start-line="94" selection-start-column="1" selection-end-line="94" selection-end-column="1" />
+            <state relative-caret-position="163">
+              <caret line="30" column="20" selection-start-line="30" selection-start-column="20" selection-end-line="30" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -155,9 +142,9 @@
         <option value="$PROJECT_DIR$/unit_tests/mainAux_unit_test.c" />
         <option value="$PROJECT_DIR$/mainAux.c" />
         <option value="$PROJECT_DIR$/SPConfig.h" />
-        <option value="$PROJECT_DIR$/query.c" />
         <option value="$PROJECT_DIR$/main.cpp" />
         <option value="$PROJECT_DIR$/query.h" />
+        <option value="$PROJECT_DIR$/query.c" />
       </list>
     </option>
   </component>
@@ -237,7 +224,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="while&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="que&#9;FILE&#9;file://C:/Users/Paz/Software_Project/C/finalProj_opencv/query.c&#10;query&#9;FILE&#9;file://C:/Users/Paz/Software_Project/C/finalProj_opencv/query.h&#10;while&#9;null&#9;null" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -436,6 +423,9 @@
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="380ca56a-44ea-4212-afe6-5190f8a3a038" name="Default" comment="" />
@@ -444,15 +434,15 @@
       <option name="presentableId" value="Default" />
       <updated>1473191819386</updated>
       <workItem from="1473191831156" duration="1360000" />
-      <workItem from="1473324486434" duration="27521000" />
+      <workItem from="1473324486434" duration="28430000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28881000" />
+    <option name="totallyTimeSpent" value="29790000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1647145" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -657,22 +647,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/query.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="94" column="1" selection-start-line="94" selection-start-column="1" selection-end-line="94" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/query.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SPListElement.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="163">
@@ -697,6 +671,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/spcbir.config">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="9" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/SPConfig.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="185">
@@ -705,10 +687,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spcbir.config">
+    <entry file="file://$PROJECT_DIR$/query.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="9" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="9" />
+        <state relative-caret-position="146">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/query.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="30" column="20" selection-start-line="30" selection-start-column="20" selection-end-line="30" selection-end-column="20" />
           <folding />
         </state>
       </provider>

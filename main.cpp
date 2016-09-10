@@ -25,7 +25,7 @@ int main( int argc, char *argv[] )  {
 
 	// initializations
 	int i, numOfFeats, queryNumOfFeats;
-	char* defaultFile = "spcbir.config";
+	char* defaultFile = "yuval/test1.config";
 	char imgPath[MAX_LEN], loggerOutput[MAX_LEN], imgDir[MAX_LEN], imagePath[MAX_LEN];
     int bestImagesIndexes[MAX_LEN];
     imageCounter* imagesCntArr;
