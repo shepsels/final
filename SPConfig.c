@@ -176,9 +176,9 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
     config = (SPConfig) malloc(sizeof(struct sp_config_t));
 
     // setting default values to variables
-	config->spPCADimension = 20;
+	config->spPCADimension = 5;	//todo change
 	strcpy(config->spPCAFilename, "pca.yml"); 	//todo check if need eol symbol
-	config->spNumOfFeatures = 100;
+	config->spNumOfFeatures = 5;	// todo change
 	config->spExtractionMode = true;
 	config->spNumOfSimilarImages = 1;
 	config->spKDTreeSplitMethod = MAX_SPREAD;
@@ -189,7 +189,7 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
 
 
     // running over each line and setting its value to the correct struct element
-    while (fgets(line, MAX_LEN, file) != NULL)
+    while (fgets(line, MAX_LEN, file))
     {
     	lineNumber++;
         // this is a comment line and shouldn't be parsed
@@ -499,7 +499,7 @@ SPConfig spConfigCreate(const char* filename, SP_CONFIG_MSG* msg) {
     	exit(1);
 	}
 
-	*msg = SP_CONFIG_SUCCESS;
+//	*msg = SP_CONFIG_SUCCESS; //todo fix
     return config;
 }
 
@@ -642,11 +642,11 @@ void spConfigDestroy(SPConfig config)
 	{
 		return;
 	}
-	free(config->spImagesDirectory);
-	free(config->spImagesPrefix);
-	free(config->spImagesSuffix);
-	free(config->spLoggerFilename);
-	free(config->spPCAFilename);
+//	free(config->spImagesDirectory);
+//	free(config->spImagesPrefix);
+//	free(config->spImagesSuffix);
+//	free(config->spLoggerFilename);
+//	free(config->spPCAFilename);
 	free(config);
 	return;
 }

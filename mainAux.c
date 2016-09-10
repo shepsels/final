@@ -117,16 +117,16 @@ bool saveFeatsToFile(SPPoint* imageInfo, int numberOfFeats, int index, SPConfig 
 
 bool lineToDoubleArray (double* lineArray, int dim, char* line, char* delim)
 {
+	//todo fails - check this!
 	char *token;
 	double tmp;
 
-    //todo validate function
     int cnt=0;
     /* get the first token */
     token = strtok(line, delim);
 
     /* walk through other tokens */
-    while(token)
+    while(cnt < dim)
     {
     	tmp = strtod(token, NULL);
     	lineArray[cnt] = tmp;
@@ -136,25 +136,32 @@ bool lineToDoubleArray (double* lineArray, int dim, char* line, char* delim)
     return lineArray;
 }
 
-int extractImagesFromFeats(SPConfig config, int numberOfPoints, SPPoint** points)
+SPPoint* extractImagesFromFeats(SPConfig config, int* numOfFeatures)
 {
-    int i, imgIndex, featsPerImg, currSize=0, counterAllPoints=0;
-    char *path = config->spImagesDirectory, *feats = FEATS;
+    int i,j, imgIndex, featsPerImg, currSize=0, counterAllPoints=0, featuresPerImgMat[config->spNumOfImages], cnt2;
+    char feats[6] = FEATS, imgPath[MAX_LEN], line[MAX_LEN];
     char *pointerToPoint;
-    char imgPath[MAX_LEN], line[MAX_LEN];
+
     FILE *file;
-    const char delim[2] = "$";
-    char *token;
+    SPPoint** matrixOfPoints;
+    SPPoint *points;
 
     // initial allocation
-    points = (SPPoint**)malloc(sizeof(SPPoint*));
+    points = (SPPoint*)malloc(sizeof(SPPoint));
+    matrixOfPoints = (SPPoint**)malloc(config->spNumOfImages*sizeof(SPPoint*));
+
+    // validate allocation
+    if (!points || !matrixOfPoints)
+    {
+        //logger error
+        spLoggerPrintError("Allocation Failure", __FILE__, __FUNCTION__, __LINE__);
+        return false;
+    }
 
     // loop over all files and extract their features
     for (i=0; i < config->spNumOfImages; i++)
     {
-    	fflush(NULL);
-    	printf("----------beginning of the %d th loop\n", i);
-    	fflush(NULL);
+    	// build the correct file path, with feats suffix
         spConfigGetImagePath(imgPath, config, i);
 
         // set the pointer to point to the beginning of the path
@@ -165,7 +172,6 @@ int extractImagesFromFeats(SPConfig config, int numberOfPoints, SPPoint** points
 
         // copy feats suffix to the correct place in filePath
         memcpy(pointerToPoint, feats, strlen(feats)+1);
-        printf("new path is: %s\n", imgPath); //todo delete
 
         // open features file for reading
         file = fopen(imgPath, "r");
@@ -184,79 +190,82 @@ int extractImagesFromFeats(SPConfig config, int numberOfPoints, SPPoint** points
         fgets(line, MAX_LEN, file);
         featsPerImg = atoi(line);
 
-        // re-allocate point array size by the number of features per image
-        currSize += featsPerImg;
+        // keep numbr of features per image in an array
+        featuresPerImgMat[i] = featsPerImg;
 
-        fflush(NULL);
-        printf("******** the new size of allocation is %d\n", currSize);
-        points = (SPPoint**)realloc(points, currSize * sizeof(SPPoint*));
+        // allocating featsPerImg space for all features per image
+        matrixOfPoints[i] = (SPPoint*)malloc(featsPerImg * sizeof(SPPoint));
 
-        fflush(NULL);
-        printf("index is: %d, and number of feats is: %d\n", imgIndex, featsPerImg); //todo delete
-        fflush(NULL);
+        // validate allocation
+        if (!matrixOfPoints[i])
+        {
+            //logger error
+            spLoggerPrintError("Allocation Failure", __FILE__, __FUNCTION__, __LINE__);
+            return false;
+        }
+
         // running over the features file and reading
+        cnt2 = 0;
         while(fgets(line, MAX_LEN, file))
         {
-            // create sppoint for feature (line)
-//             dataLine;
             //create data array with all the information from the whole line
             double *data = (double*)malloc(config->spPCADimension*sizeof(double));
 
-            fflush(NULL);
-            printf("data array created\n"); //todo delete
-            fflush(NULL);
-
+            if (!data)
+            {
+                //logger error
+                spLoggerPrintError("Allocation Failure", __FILE__, __FUNCTION__, __LINE__);
+                return false;
+            }
+            // parse the line from the file
             lineToDoubleArray(data, config->spPCADimension, line, "$"); //todo change delimiter
 
-            fflush(NULL);
-            printf("line parsed\n"); //todo delete
-            fflush(NULL);
-
-            SPPoint dataLine = spPointCreate(data, config->spPCADimension, imgIndex);
-
-            fflush(NULL);
-            printf("the %d point created\n", counterAllPoints); //todo delete
-            fflush(NULL);
-
-            //todo connect each point to points array
+            // create SPPoint with the data
+            SPPoint linePoint = spPointCreate(data, config->spPCADimension, imgIndex);
 
             // save the pointer to the correct place in points array
-            points[counterAllPoints] = &dataLine;
-
-            fflush(NULL);
-            printf("point inserted\n"); //todo delete
-            fflush(NULL);
-
+            matrixOfPoints[i][cnt2] = linePoint;
             counterAllPoints++;
-//            fflush(NULL);
-//            printf("point id: %d\n", points[0][0]->index);
-//            fflush(NULL);
-//            printf("point first data: %f\n", points[0][0]->data[0]);
-//            fflush(NULL);
-
-            //free
-            free(data);
+            cnt2++;
         }
+        fclose(file);
     }
-    fflush(NULL);
-    printf("the total count is: %d", counterAllPoints);
-    fflush(NULL);
-    return counterAllPoints;
+
+    // copying the 2d matrix to an all points 1d matrix
+    points = (SPPoint*)malloc(counterAllPoints*sizeof(SPPoint));
+    printf("counter for all: %d\n", counterAllPoints);
+
+    cnt2 = 0;
+    for(i=0; i<config->spNumOfImages; i++)
+    {
+    	for (j=0; j<featuresPerImgMat[i]; j++)
+    	{
+    		points[cnt2] = spPointCopy(matrixOfPoints[i][j]);
+    		cnt2++;
+//    		cnt2++;
+    		free(matrixOfPoints[i][j]);
+    	}
+    	free(matrixOfPoints[i]);
+    }
+    free(matrixOfPoints);
+
+    *numOfFeatures = counterAllPoints;
+    return points;
 }
 
 bool fromFilesToKDTree(SPConfig config,SPKDArray array, KDTreeNode tree, SPPoint* points)
 {
     int numberOfPoints;
 
-    //todo extract all features
-//    points = extractImagesFromFeats(config, numberOfPoints, points);
+//    todo extract all features
+    points = extractImagesFromFeats(config, &numberOfPoints);
 
     // initialize the array
-//    array = init(allImages, allImagesSize); //todo change name and make sure that's the correct number
-//    //todo validate
-//
-//    // initialize the tree
-//    tree = kdTreeInit(array, config->spKDTreeSplitMethod, allImagesSize);
+    array = init(points, numberOfPoints); //todo change name and make sure that's the correct number
+    //todo validate
+
+    // initialize the tree
+    tree = kdTreeInit(array, config->spKDTreeSplitMethod, numberOfPoints);
     //todo validate
 
 

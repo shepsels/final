@@ -1,7 +1,7 @@
 /*
  * SPPoint.c
  *
- *  Created on: 27 пїЅпїЅпїЅпїЅ 2016
+ *  Created on: 27 боай 2016
  *      Author: Noa
  */
 
@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 #include "SPPoint.h"
 
 
@@ -45,17 +46,17 @@ SPPoint spPointCopy(SPPoint source){
 	double* newData;
 
 	pointCopy=(SPPoint)malloc(sizeof(struct sp_point_t));
-		if(pointCopy == NULL)    //memory allocation failed
-			{
-				free(pointCopy);
-				return NULL;
-			}
+	if(pointCopy == NULL)    //memory allocation failed
+		{
+			free(pointCopy);
+			return NULL;
+		}
 	newData=(double*)malloc(source->dim*sizeof(double));
 	if(newData == NULL)    //memory allocation failed
-			{
-				free(pointCopy);
-				return NULL;
-			}
+		{
+			free(pointCopy);
+			return NULL;
+		}
 	memcpy(newData,source->data,source->dim*sizeof(double));
 	pointCopy->data=newData;
 	pointCopy->index=source->index;
@@ -83,10 +84,7 @@ int spPointGetIndex(SPPoint point){
 
 double spPointGetAxisCoor(SPPoint point, int axis){
 	double res;
-	if (!point){
-		printf("point in axis func is null"); //TODO
-		return -1.0;
-	}
+
 	res=(double)(point->data[axis]);
 	return res;
 }

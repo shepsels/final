@@ -8,6 +8,9 @@
 #ifndef KDARRAY_H_
 #define KDARRAY_H_
 
+# include "SPPoint.h"
+# include <stdbool.h>
+
 struct point_index;
 typedef struct point_index* pointIndex;
 struct kd_array;
@@ -40,15 +43,14 @@ void destroyPI(pointIndex pI);
 /**TODO
  *
  */
-void sortByAxis(int** res,SPPoint* arr, int size,int dim);
-
+bool sortByAxis(int** res,SPPoint* arr, int size,int dim);
 //void destroyArr(int** arr);
 
 /**
  * Free all memory allocation associated with kd-array,
  * if kd-array is NULL nothing happens.
  */
-void destroy(SPKDArray kdArr);
+void kdArrDestroy(SPKDArray kdArr);
 
 
 /**
@@ -66,11 +68,21 @@ int coorComparator(const void* p,const void* q);
  */
 SPKDArray* split(SPKDArray kdArr, int coor);
 
+SPKDArray splitSort(int** indexArr,int* map,int* x,int lOrR,int half,int size,int dim,int coor);
+
 //TODO
 SPPoint pIGetPoint(pointIndex pI);
 
 int pIGetIndex(pointIndex pI);
 
 int pIGetAxis(pointIndex pI);
+
+SPPoint* getOriginalArr(SPKDArray kdArr);
+
+int** getIndexArr(SPKDArray kdArr);
+
+int getSize(SPKDArray kdArr);
+
+int getDim(SPKDArray kdArr);
 
 #endif /* KDARRAY_H_ */
