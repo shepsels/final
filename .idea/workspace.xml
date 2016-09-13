@@ -10,14 +10,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="380ca56a-44ea-4212-afe6-5190f8a3a038" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/spcbir.config" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Debug/SPConfig.o" afterPath="$PROJECT_DIR$/Debug/SPConfig.o" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Debug/finalProj_opencv.exe" afterPath="$PROJECT_DIR$/Debug/finalProj_opencv.exe" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Debug/main.o" afterPath="$PROJECT_DIR$/Debug/main.o" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Debug/mainAux.o" afterPath="$PROJECT_DIR$/Debug/mainAux.o" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Debug/unit_tests/SPConfig_unit_test.o" afterPath="$PROJECT_DIR$/Debug/unit_tests/SPConfig_unit_test.o" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Debug/unit_tests/mainAux_unit_test.o" afterPath="$PROJECT_DIR$/Debug/unit_tests/mainAux_unit_test.o" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SPConfig.c" afterPath="$PROJECT_DIR$/SPConfig.c" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.cpp" afterPath="$PROJECT_DIR$/main.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainAux.c" afterPath="$PROJECT_DIR$/mainAux.c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/query.c" afterPath="$PROJECT_DIR$/query.c" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/unit_tests/SPConfig_unit_test.c" afterPath="$PROJECT_DIR$/unit_tests/SPConfig_unit_test.c" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/unit_tests/mainAux_unit_test.c" afterPath="$PROJECT_DIR$/unit_tests/mainAux_unit_test.c" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/unit_tests/spcbir.config" afterPath="$PROJECT_DIR$/unit_tests/spcbir.config" />
     </list>
     <ignored path="finalProj_opencv.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,11 +40,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SPConfig.c" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SPConfig.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/SPConfig.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="184" column="17" selection-start-line="184" selection-start-column="12" selection-end-line="184" selection-end-column="17" />
+            <state relative-caret-position="85">
+              <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SPConfigAux.c" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SPConfigAux.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="486">
+              <caret line="130" column="0" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SPConfigAux.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SPConfigAux.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="442">
+              <caret line="26" column="39" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -97,10 +120,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="query.c" pinned="false" current-in-tab="true">
+      <file leaf-file-name="query.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/query.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="163">
+            <state relative-caret-position="510">
               <caret line="30" column="20" selection-start-line="30" selection-start-column="20" selection-end-line="30" selection-end-column="20" />
               <folding />
             </state>
@@ -117,16 +140,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SPConfig.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SPConfig.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="163" column="34" selection-start-line="163" selection-start-column="14" selection-end-line="163" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="Git.Settings">
@@ -138,13 +151,15 @@
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/SPBPriorityQueue.h" />
         <option value="$PROJECT_DIR$/SPBPriorityQueue.c" />
-        <option value="$PROJECT_DIR$/SPConfig.c" />
         <option value="$PROJECT_DIR$/unit_tests/mainAux_unit_test.c" />
         <option value="$PROJECT_DIR$/mainAux.c" />
         <option value="$PROJECT_DIR$/SPConfig.h" />
         <option value="$PROJECT_DIR$/main.cpp" />
         <option value="$PROJECT_DIR$/query.h" />
         <option value="$PROJECT_DIR$/query.c" />
+        <option value="$PROJECT_DIR$/spconfigAux.c" />
+        <option value="$PROJECT_DIR$/SPConfigAux.h" />
+        <option value="$PROJECT_DIR$/SPConfig.c" />
       </list>
     </option>
   </component>
@@ -434,12 +449,12 @@
       <option name="presentableId" value="Default" />
       <updated>1473191819386</updated>
       <workItem from="1473191831156" duration="1360000" />
-      <workItem from="1473324486434" duration="28430000" />
+      <workItem from="1473324486434" duration="29873000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29790000" />
+    <option name="totallyTimeSpent" value="31233000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -679,14 +694,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SPConfig.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="184" column="17" selection-start-line="184" selection-start-column="12" selection-end-line="184" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/query.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="146">
@@ -697,8 +704,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/query.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
+        <state relative-caret-position="510">
           <caret line="30" column="20" selection-start-line="30" selection-start-column="20" selection-end-line="30" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SPConfigAux.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="39" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SPConfigAux.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="130" column="0" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SPConfig.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
           <folding />
         </state>
       </provider>

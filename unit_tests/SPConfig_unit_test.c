@@ -7,7 +7,7 @@
 
 static bool spConfigCreateTest_1() {
 	printf("started test 1\n\n");
-    char* path = "configFile3_valid.txt"; //todo change back
+    char* path = "unit_tests/spcbir.config"; //todo change back
     SP_CONFIG_MSG * msg;
     SPConfig conf_a;
 
@@ -66,17 +66,17 @@ static bool hasSpacesInVarTest() {
 
 
 
-//int main() {
-//    SPConfig conf_a;
-//    SP_CONFIG_MSG * msg;
-//
-//    conf_a = spConfigCreate("configFile3_valid.txt", msg);
-////    printf("%d\n", conf_a->spKNN);
-//
-//
-//	RUN_TEST(spConfigCreateTest_1);
-//
-//
-//    RUN_TEST(hasSpacesInVarTest);
-//    return 0;
-//}
+int main() {
+    SPConfig conf_a;
+    SP_CONFIG_MSG msg[MAX_LEN];
+
+    conf_a = spConfigCreate("unit_tests/spcbir.config", msg);
+//    printf("%d\n", conf_a->spKNN);
+
+
+	RUN_TEST(spConfigCreateTest_1);
+
+
+    RUN_TEST(hasSpacesInVarTest);
+    return 0;
+}
